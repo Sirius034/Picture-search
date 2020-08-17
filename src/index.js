@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom'
+import { PixabayState } from './context/pixbay/PixabayState';
+import { FirebaseState } from './context/firebase/FirebaseState';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <PixabayState>
+      <FirebaseState>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+      </FirebaseState>
+    </PixabayState>
+  </React.StrictMode >,
   document.getElementById('root')
 );
 
