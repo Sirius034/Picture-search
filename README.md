@@ -1,4 +1,4 @@
-Вы можете протестировать приложение, перейдя по ссылке https://picture-search-e07e9.web.app
+Вы можете протестировать приложение, перейдя по ссылке https://picture-search-e07e9.web.app/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
