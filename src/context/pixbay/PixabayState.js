@@ -5,7 +5,6 @@ import { PixabayContect } from './pixabayContext';
 import {
     SEARCH_PICTURES,
     GET_PICTURES,
-    GET_CHOSEN,
     SET_LOADING,
     CLEAR_PICTURES,
 } from './type';
@@ -39,12 +38,6 @@ export const PixabayState = ({ children }) => {
             console.log(e);
         }
     }
-    // вынести в fireBasse
-    const getShosen = () => {
-        setLoading();
-
-        dispatch({ type: GET_CHOSEN, payload: state.chosen });
-    }
 
     const setSearch = async (value) => {
         try {
@@ -76,7 +69,7 @@ export const PixabayState = ({ children }) => {
         <PixabayContect.Provider
             value={{
                 hits, loading, page,
-                setSearch, getPictures, getShosen, 
+                setSearch, getPictures, 
                 clearPictures, nextPageData
             }}>
             {children}

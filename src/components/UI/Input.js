@@ -9,7 +9,7 @@ export const Input = ({ label, type, placeholder = null, value, handler, onKeyPr
             { !placeholder && <label htmlFor={htmlFor}>{ label }</label> }
 
             <input 
-                className="form-control" 
+                className="form-control pl-4" 
                 id={htmlFor} 
                 type={typeInput} 
                 placeholder={placeholder} 

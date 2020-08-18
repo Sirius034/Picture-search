@@ -86,7 +86,7 @@ export const Auth = () => {
     }
 
     return (
-        <div className="col-7 bg-light border border-secondary shadow rounded m-auto p-3">
+        <div className="col-md-7 col-sm-11 bg-light border border-secondary shadow rounded m-auto p-3">
             <Form forms={formControl.forms} onChangeHandler={onChangeHandler}>
                 <Button type="success" disabled={!formControl.isFormValid} onClick={loginHandler}>
                     Авторизация

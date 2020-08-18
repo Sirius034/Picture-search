@@ -1,6 +1,6 @@
 import React from 'react';
 import { Cards } from '../containers/Cards';
-import { Search } from '../containers/Search';
+import { Search } from '../containers/Search/Search';
 
 export const Home = () => {
     return (

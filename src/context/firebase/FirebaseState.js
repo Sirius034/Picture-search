@@ -151,7 +151,6 @@ export const FirebaseState = ({ children }) => {
     const logout = () => dispatch({ type: AUTH_LOGOUT, user: initialState.user });
 
     const { token, user } = state;
-
     return (
         <FirebaseContext.Provider
             value={{

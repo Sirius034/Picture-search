@@ -25,7 +25,6 @@ export const User = () => {
             .filter(fildName => controlName[fildName].value !== user[fildName])
             .forEach(field =>  fieldsEditor[field] = controlName[field].value);
 
-        // отправть в editor и сохранить в бд
         editor(fieldsEditor);
     }
 

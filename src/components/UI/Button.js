@@ -5,7 +5,7 @@ export const Button = (props) => {
     return (
         <button
             type={type}
-            className={`btn btn-${type} btn mr-3`}
+            className={`btn btn-${type} btn mr-3 mb-2`}
             disabled={props.disabled}
             onClick={props.onClick}
         >{props.children}</button>
