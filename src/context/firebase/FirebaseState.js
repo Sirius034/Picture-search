@@ -33,7 +33,7 @@ const schema = {
             tags: 'pixabay',
             webformatHeight: 200,
             webformatWidth: 200,
-            webformatURL: 'https://pixabay.com/static/img/public/medium_rectangle_a.png'
+            largeImageURL: 'https://pixabay.com/static/img/public/medium_rectangle_a.png'
         }
     ]
 }
@@ -100,10 +100,10 @@ export const FirebaseState = ({ children }) => {
         if (!duplicate) {
             const favorites = hits.find(pict => pict.id === idPict);
             const user = { ...state.user };
-            const { id, tags, webformatHeight, webformatWidth, webformatURL } = favorites;
-
+            const { id, tags, webformatHeight, webformatWidth, largeImageURL } = favorites;
+         
             user.chosen.push({
-                id, tags, webformatURL, webformatHeight, webformatWidth
+                id, tags, largeImageURL, webformatHeight, webformatWidth
             });
 
             try {

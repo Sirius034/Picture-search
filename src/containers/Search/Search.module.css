@@ -1,6 +1,14 @@
+.Search {
+    margin: 0 auto 15px;
+}
+
+.Search input {
+    padding-left: 23px;
+}
+
 .icon_search {
     position: absolute;
-    top: 8px;
+    top: 9px;
     left: 20px;
-    font-size: 16px;
+    font-size: 14px;
 }

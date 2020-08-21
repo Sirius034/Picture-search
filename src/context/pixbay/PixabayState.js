@@ -6,71 +6,104 @@ import {
     SEARCH_PICTURES,
     GET_PICTURES,
     SET_LOADING,
-    CLEAR_PICTURES,
+    NEXT_PAGE,
+    SET_PER_PAGE,
+    SET_ORDER
 } from './type';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-const routePattern = (page, search) => {
-    return `https://pixabay.com/api/?key=${API_KEY}&q=${search}&page=${page}&per_page=20&`;
-}
+const routePattern = url => `https://pixabay.com/api/?key=${API_KEY}${url}`;
+
+const getURL = ({ order, search, page, per_page }) => `&q=${search}&order=${order}&page=${page}&per_page=${per_page}`;
 
 const initialState = {
     hits: [],
     loading: false,
     page: 1,
-    search: ''
+    per_page: 20,
+    search: '',
+    order: 'popular'
 }
 
 export const PixabayState = ({ children }) => {
     const [state, dispatch] = useReducer(pixabayReducer, initialState);
 
-    const getPictures = async (newPage) => {
+    const getPictures = async () => {
+        setLoading();
         try {
-            setLoading();
-            const page = newPage || state.page;
-
-            const response = await axios.get(routePattern(page, state.search));
+            const response = await axios.get(routePattern(getURL(state)));
             const hits = [...response.data.hits];
 
             dispatch({ type: GET_PICTURES, hits, page });
-        } catch(e) {
+        } catch (e) {
             console.log(e);
         }
     }
 
-    const setSearch = async (value) => {
+    const setSearch = async value => {
+        setLoading();
         try {
-            setLoading();
             const search = value.replace(/ /g, '+');
             const page = 1;
 
-            const response = await axios.get(routePattern(page, search));
-            
-            const hits = [...response.data.hits];
-            
+            const response = await axios.get(routePattern(getURL({ ...state, page, search })));
+
+            const hits = response.data.hits;
+
             dispatch({ type: SEARCH_PICTURES, hits, page, search });
-        } catch(e) {
+        } catch (e) {
             console.log(e);
         }
     }
 
-    const nextPageData = (page) => {
-        getPictures(page)
+    const nextPageData = async page => {
+        setLoading();
+        try {
+            const response = await axios.get(routePattern(getURL({ ...state, page })));
+            const hits = response.data.hits;
+
+            dispatch({ type: NEXT_PAGE, hits, page });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const setPerPage = async per_page => {
+        setLoading();
+        try {
+            const response = await axios.get(routePattern(getURL({ ...state, per_page })));
+            const hits = response.data.hits;
+
+            dispatch({ type: SET_PER_PAGE, hits, per_page });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const setOrder = async order => {
+        setLoading();
+        try {
+            const page = 1;
+            const response = await axios.get(routePattern(getURL({ ...state, order, page })));
+            const hits = response.data.hits;
+
+            dispatch({ type: SET_ORDER, hits, order, page });
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     const setLoading = () => dispatch({ type: SET_LOADING });
 
-    const clearPictures = () => dispatch({ type: CLEAR_PICTURES }); 
+    const { hits, page, loading, search, order } = state;
 
-    const { hits, page, loading } = state;
-    
     return (
         <PixabayContect.Provider
             value={{
-                hits, loading, page,
-                setSearch, getPictures, 
-                clearPictures, nextPageData
+                hits, loading, page, search, order,
+                setSearch, getPictures,
+                nextPageData, setPerPage, setOrder
             }}>
             {children}
         </PixabayContect.Provider>

@@ -8,9 +8,9 @@ import { Favorite } from './Pages/Favorite';
 import { Login } from './Pages/Login';
 import { FirebaseContext } from './context/firebase/firebaseContext';
 
-function App() {
+export const App = () => {
   const { token } = useContext(FirebaseContext);
-
+  
   let routs = (
     <Switch>
       <Route path="/" exact component={Home} />
@@ -19,7 +19,7 @@ function App() {
       <Redirect to="/" />
     </Switch>
   );
-  
+
   if (token) {
     routs = (
       <Switch>
@@ -39,4 +39,3 @@ function App() {
   );
 }
 
-export default App;

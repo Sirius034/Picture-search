@@ -1,5 +1,5 @@
 import React from 'react';
-import { User } from '../containers/User';
+import { User } from '../containers/User/User';
 
 export const Profile = () => {
     return (

@@ -1,6 +1,4 @@
 .block {
-    position: relative;
-    left: 0;
     box-shadow: none;
     transition: .4s ease-in;
 }

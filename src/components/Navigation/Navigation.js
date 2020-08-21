@@ -1,12 +1,10 @@
-import React, { useContext } from 'react';
-import classes from './NavBar.module.css';
+import React from 'react';
+import classes from './Navigation.module.css';
 import { NavLink } from 'react-router-dom';
-import { FirebaseContext } from '../../context/firebase/firebaseContext';
 import { Navbar } from 'react-bootstrap';
 
 
-export const NavBar = (props) => {
-    const { token } = useContext(FirebaseContext);
+export const Navigation = ({ token }) => {
     const links = [
         { to: '/', exact: true, label: 'Главная страница' }
     ];

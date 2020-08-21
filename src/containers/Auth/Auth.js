@@ -1,12 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { Button } from '../components/UI/Button';
+import { Button } from '../../components/UI/Button/Button';
+import { FirebaseContext } from '../../context/firebase/firebaseContext';
+import { Form } from '../../components/UI/Form';
+import classes from './Auth.module.css';
 import is from 'is_js';
-import { FirebaseContext } from '../context/firebase/firebaseContext';
-import { Form } from '../components/UI/Form';
 
 export const Auth = () => {
-    // Нужен стате для определения типа инпут и его контролер
-    // так же для авторизации и регистрации
     const { auth } = useContext(FirebaseContext);
     const [formControl, setFormControl] = useState({
         isFormValid: false,
@@ -32,7 +31,9 @@ export const Auth = () => {
                 },
             }
         }
-    })
+    });
+
+    const cls = `col-md-7 col-sm-11 bg-light ${classes.Auth}`
 
     const registerHandler = () => {
         auth(
@@ -86,7 +87,7 @@ export const Auth = () => {
     }
 
     return (
-        <div className="col-md-7 col-sm-11 bg-light border border-secondary shadow rounded m-auto p-3">
+        <div className={cls}>
             <Form forms={formControl.forms} onChangeHandler={onChangeHandler}>
                 <Button type="success" disabled={!formControl.isFormValid} onClick={loginHandler}>
                     Авторизация

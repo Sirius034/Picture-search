@@ -1,0 +1,21 @@
+.Control {
+    position: relative;
+    padding: 10px 25px 9px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.Control::after {
+    content: '';
+    width: 95%;
+    height: 2%;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%);
+    background: rgb(170, 240, 101);
+    box-shadow: 0 0 5px rgb(247, 245, 242);
+}

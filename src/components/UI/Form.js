@@ -2,17 +2,19 @@ import React from 'react';
 import { Input } from './Input';
 
 export const Form = ({ forms, onChangeHandler, children }) => {
-    const inputs = Object.keys(forms).map((controlName, i)=> {
+    const inputs = Object.keys(forms).map((controlName, i) => {
         const control = forms[controlName];
         return (
-            <Input 
-                key={i}
-                type={control.type}
-                label={control.label}
-                value={control.value}
-                handler={ev => onChangeHandler(ev.target.value, controlName)}
-            />
-        )
+            <div key={i} className="form-group">
+                <Input
+                    cls="form-control"
+                    type={control.type}
+                    label={control.label}
+                    value={control.value}
+                    onChange={ev => onChangeHandler(ev.target.value, controlName)}
+                />
+            </div>
+        );
     });
 
     const handlerSubmit = (ev) => {
@@ -21,8 +23,8 @@ export const Form = ({ forms, onChangeHandler, children }) => {
 
     return (
         <form onSubmit={handlerSubmit}>
-            { inputs }
-            { children }
+            {inputs}
+            {children}
         </form>
     );
 }

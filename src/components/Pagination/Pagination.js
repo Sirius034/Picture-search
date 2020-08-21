@@ -1,19 +1,6 @@
-import React, { useContext } from 'react';
-import { PixabayContect } from '../context/pixbay/pixabayContext';
+import React from 'react';
 
-export const Pagination = () => {
-    const { page, nextPageData } = useContext(PixabayContect);
-
-    const nextPageHandler = () => {
-        nextPageData(page + 1);
-    }
-
-    const previousPageHandler = () => {
-        if (page === 1) return;
-
-        nextPageData(page - 1);
-    }
-
+export const Pagination = ({previousPageHandler, nextPageHandler, page}) => {
     return (
         <nav aria-label="New page">
             <ul className="pagination justify-content-center mt-4">

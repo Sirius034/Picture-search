@@ -1,5 +1,5 @@
 import React from 'react';
-import { Auth } from '../containers/Auth';
+import { Auth } from '../containers/Auth/Auth';
 
 export const Login = () => {
     return (

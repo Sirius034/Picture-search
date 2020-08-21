@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-export const Input = ({ label, type, placeholder = null, value, handler, onKeyPress}) => {
+export const Input = ({cls, label, type, name, placeholder, value, onChange, onKeyPress, onClick }) => {
     const typeInput = type || 'text';
     const htmlFor = `${typeInput}-${Math.random()}`;
-
     return (
-        <div className="form-group">
-            { !placeholder && <label htmlFor={htmlFor}>{ label }</label> }
+        <Fragment>
+            {label && <label htmlFor={htmlFor}>{label}</label>}
 
-            <input 
-                className="form-control pl-4" 
-                id={htmlFor} 
-                type={typeInput} 
-                placeholder={placeholder} 
+            <input
+                className={cls}
+                id={htmlFor}
+                type={typeInput}
+                name={name}
+                placeholder={placeholder}
                 value={value}
-                onChange={handler}
+                onChange={onChange}
                 onKeyPress={onKeyPress}
+                onClick={onClick}
             />
-        </div>
+        </Fragment>
     );
 }
