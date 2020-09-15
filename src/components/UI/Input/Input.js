@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-export const Input = ({cls, label, type, name, placeholder, value, onChange, onKeyPress, onClick }) => {
+export const Input = ({cls, label, type, name, placeholder, value, onChange, onKeyPress, onClick, errorMessage }) => {
     const typeInput = type || 'text';
     const htmlFor = `${typeInput}-${Math.random()}`;
     return (
-        <Fragment>
+        <>
             {label && <label htmlFor={htmlFor}>{label}</label>}
 
             <input
@@ -18,6 +18,6 @@ export const Input = ({cls, label, type, name, placeholder, value, onChange, onK
                 onKeyPress={onKeyPress}
                 onClick={onClick}
             />
-        </Fragment>
+        </>
     );
 }

@@ -19,7 +19,7 @@ export const App = () => {
       <Redirect to="/" />
     </Switch>
   );
-
+    //token
   if (token) {
     routs = (
       <Switch>

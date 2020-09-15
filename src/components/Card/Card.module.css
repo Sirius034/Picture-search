@@ -1,10 +1,11 @@
 .block {
+    margin: auto;
     box-shadow: none;
     transition: .4s ease-in;
 }
 
 .block:hover {
-    box-shadow: 0px 0px 15px 4px rgb(86, 197, 86);
+    box-shadow: 0px 0px 5px 2px rgb(86, 197, 86);
 }
 
 .overlay {
@@ -20,3 +21,4 @@
 .pixabay_logo {
     width: 50%;
 }
+

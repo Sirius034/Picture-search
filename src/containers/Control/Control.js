@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
+import classes from './Control.module.css';
 import { ImegeSort } from '../../components/ImegeSort/ImegeSort';
 import { ImageOutput } from '../../components/ImageOutput/ImageOutput';
-import classes from './Control.module.css';
 import { PixabayContect } from '../../context/pixbay/pixabayContext';
 
 export const Control = () => {

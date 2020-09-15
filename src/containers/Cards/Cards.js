@@ -1,9 +1,9 @@
-import React, { useContext, Fragment, useEffect } from 'react';
-import Gallery from '../components/Gallery/Gallery';
-import { PixabayContect } from '../context/pixbay/pixabayContext';
-import { FirebaseContext } from '../context/firebase/firebaseContext';
-import { Pagination } from '../components/Pagination/Pagination';
-import { Loading } from '../components/UI/Loading';
+import React, { useContext, useEffect } from 'react';
+import { PixabayContect } from '../../context/pixbay/pixabayContext';
+import { FirebaseContext } from '../../context/firebase/firebaseContext';
+import { Pagination } from '../../components/Pagination/Pagination';
+import { Loading } from '../../components//UI/Loading/Loading';
+import Gallery from '../../components/Gallery/Gallery';
 
 
 export const Cards = () => {
@@ -11,8 +11,8 @@ export const Cards = () => {
     const { token, addToFavorites } = useContext(FirebaseContext);
 
     useEffect(() => {
-      getPictures();
-      // eslint-disable-next-line
+        getPictures();
+        // eslint-disable-next-line
     }, []);
 
     const nextPageHandler = () => {
@@ -28,18 +28,18 @@ export const Cards = () => {
     if (loading) return <Loading />
 
     return (
-        <Fragment>
+        <>
             <Gallery
                 token={token}
                 imges={hits}
                 loading={loading}
                 handler={addToFavorites}
                 type="success" />
-                
+
             <Pagination
                 page={page}
                 nextPageHandler={nextPageHandler}
                 previousPageHandler={previousPageHandler} />
-        </Fragment>
+        </>
     );
 }

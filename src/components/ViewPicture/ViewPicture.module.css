@@ -1,0 +1,19 @@
+.ViewPicture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background: rgba(241, 214, 214, .8);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+}
+
+.picture img {
+    display: block;
+    width: 100%;
+    max-width: 700px;
+}
+

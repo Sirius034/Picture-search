@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cards } from '../containers/Cards';
+import { Cards } from '../containers/Cards/Cards';
 import { Search } from '../containers/Search/Search';
 import { Control } from '../containers/Control/Control';
 

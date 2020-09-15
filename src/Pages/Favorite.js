@@ -1,5 +1,5 @@
 import React from 'react';
-import { FavoriteCards } from '../containers/FavoriteCards';
+import { FavoriteCards } from '../containers/FavoriteCards/FavoriteCards';
 
 export const Favorite = () => {
     return (

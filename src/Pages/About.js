@@ -5,7 +5,7 @@ export const About = () => {
         <div className="jumbotron jumbotron-fluid">
             <div className="container">
                 <h1 className="display-4">Информация</h1>
-                <p className="lead">Последние изменения: <strong>18.08.2020 </strong></p>
+                <p className="lead">Последние изменения: <strong>15.09.2020</strong></p>
             </div>
         </div>
     );

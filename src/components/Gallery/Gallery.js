@@ -3,8 +3,7 @@ import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import { trackWindowScroll } from 'react-lazy-load-image-component';
 import { Card } from '../Card/Card';
 import { Button } from '../UI/Button/Button';
-import { Backdrop } from '../UI/Backdrop/Backdrop';
-import { Picture } from '../Picture/Picture';
+import { ViewPicture } from '../ViewPicture/ViewPicture';
 
 const Gallery = ({ imges, handler, type, token }) => {
     const [scrollPosition, setScrollPosition] = useState({ x: 0, y: 0 });
@@ -25,10 +24,8 @@ const Gallery = ({ imges, handler, type, token }) => {
     const BtnChildren = type !== 'danger' ? 'В избранное' : 'Удалить';
    
     return (
-        <div className="card-columns bg-dark shadow-lg py-1 px-1">
-            {view && <Picture src={view} onClick={clearHandlers} >
-                <Backdrop onClick={clearHandlers}/>
-            </Picture>}
+        <div className="card-columns bg-dark shadow-lg py-4 px-2">
+            {view && <ViewPicture src={view} onClick={clearHandlers} />}
             
             {
                 imges.map(img => {

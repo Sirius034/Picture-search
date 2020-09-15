@@ -8,7 +8,7 @@ export const Navigation = ({ token }) => {
     const links = [
         { to: '/', exact: true, label: 'Главная страница' }
     ];
-
+    // !token
     if (!token) {
         links.push({ to: '/login', exact: false, label: 'Авторизация' });
         links.push({ to: '/about', exact: false, label: 'Информация' });

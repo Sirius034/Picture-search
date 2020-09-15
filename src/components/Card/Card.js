@@ -1,30 +1,34 @@
-import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import React, { useRef, useEffect, useState } from 'react';
 import classes from './Card.module.css';
+import { Img } from '../Img/Img';
 
 export const Card = (props) => {
+    const divElement = useRef(null);
+    const [dimensions, setDimensions] = useState(null);
+
+    useEffect(() => {
+        setDimensions({
+            width: divElement.current.offsetWidth,
+            height: props.height / (props.width / divElement.current.offsetWidth)
+        });
+        // eslint-disable-next-line
+    }, [divElement]);
+
     const onClick = (e) => {
-        if(e.target.tagName !== 'BUTTON') {
+        if (e.target.tagName !== 'BUTTON') {
             props.viewHandlers(props.src)
-        } 
+        }
     }
-    
+
     return (
-        <div className={`card bg-dark text-white ${classes.block} my-3`}
+        <div
+            ref={divElement}
+            className={`card bg-dark text-white ${classes.block} my-2`}
             onClick={onClick}
         >
-
-            <LazyLoadImage
-                className={'card-img'}
-                threshold={600}
-                alt="Pixabay"
-                width={'100%'}
-                height={props.height}
-                src={props.src}
-                scrollPosition={props.scrollPosition}
-                effect="blur"
-            />
+            { 
+                dimensions && 
+                <Img width={dimensions.width} height={dimensions.height} scrollPosition={props.scrollPosition} src={props.src} /> }
 
             <div className={`card-img-overlay ${classes.overlay}`}>
                 <a href={props.pixabay} target="_blank" rel="noopener noreferrer">

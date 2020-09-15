@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Input } from '../../components/UI/Input';
+import { Input } from '../../components/UI/Input/Input';
 import { PixabayContect } from '../../context/pixbay/pixabayContext';
 import classes from './Search.module.css';
 
