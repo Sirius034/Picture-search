@@ -5,5 +5,5 @@ import { FirebaseContext } from '../../context/firebase/firebaseContext';
 export const FavoriteCards = () => {
     const { token, user, removeFavorites } = useContext(FirebaseContext);
 
-    return <Gallery imges={user.chosen} handler={removeFavorites} type="danger" token={token} />
+    return <Gallery imges={user.chosen} actionHandler={removeFavorites} type="danger" token={token} />
 }

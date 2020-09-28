@@ -1,0 +1,37 @@
+.Card {
+    margin: auto;
+    box-shadow: none;
+    transition: .4s ease-in;
+    position: relative;
+
+    &:hover {
+        box-shadow: 0px 0px 5px 2px rgb(86, 197, 86);
+    }
+
+    .overlay {
+        opacity: 0;
+        transition: opacity .3s ease-out;
+
+        p {
+            margin-top: 5px;
+            font-size: 1.4vh;
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+
+        .pixabay_logo {
+            width: 50%;
+            max-width: 200px;
+            min-width: 140px;
+        }
+
+        button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 10;
+        }
+    }
+}

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import classes from './Card.module.css';
+import classes from './Card.module.scss';
 import { Img } from '../Img/Img';
 
 export const Card = (props) => {
@@ -15,20 +15,19 @@ export const Card = (props) => {
     }, [divElement]);
 
     const onClick = (e) => {
-        if (e.target.tagName !== 'BUTTON') {
-            props.viewHandlers(props.src)
-        }
+        props.viewHandlers(props.src)
     }
 
     return (
         <div
             ref={divElement}
-            className={`card bg-dark text-white ${classes.block} my-2`}
+            className={`card bg-dark text-white ${classes.Card} my-2`}
             onClick={onClick}
         >
-            { 
-                dimensions && 
-                <Img width={dimensions.width} height={dimensions.height} scrollPosition={props.scrollPosition} src={props.src} /> }
+            {
+                dimensions &&
+                <Img width={dimensions.width} height={dimensions.height} scrollPosition={props.scrollPosition} src={props.src} />
+            }
 
             <div className={`card-img-overlay ${classes.overlay}`}>
                 <a href={props.pixabay} target="_blank" rel="noopener noreferrer">

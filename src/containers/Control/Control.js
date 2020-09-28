@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import classes from './Control.module.css';
+import classes from './Control.module.scss';
 import { ImegeSort } from '../../components/ImegeSort/ImegeSort';
 import { ImageOutput } from '../../components/ImageOutput/ImageOutput';
 import { PixabayContect } from '../../context/pixbay/pixabayContext';

@@ -8,12 +8,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 30;
-}
+    z-index: 40;
 
-.picture img {
-    display: block;
-    width: 100%;
-    max-width: 700px;
+    .picture {
+        img {
+            display: block;
+            width: 100%;
+            max-width: 700px;
+        }
+    }
 }
-

@@ -5,7 +5,7 @@ import { Card } from '../Card/Card';
 import { Button } from '../UI/Button/Button';
 import { ViewPicture } from '../ViewPicture/ViewPicture';
 
-const Gallery = ({ imges, handler, type, token }) => {
+const Gallery = ({ imges, actionHandler, type, token }) => {
     const [scrollPosition, setScrollPosition] = useState({ x: 0, y: 0 });
     const [view, setView] = useState(false);
 
@@ -21,12 +21,19 @@ const Gallery = ({ imges, handler, type, token }) => {
         setView(false);
     }
 
-    const BtnChildren = type !== 'danger' ? 'В избранное' : 'Удалить';
-   
+    const clickHandler = (ev, id) => {
+        ev.stopPropagation();
+        actionHandler(id);
+    }
+
+    const BtnChildren = type !== 'danger'
+        ? <i className="fas fa-star"></i>
+        : 'Удалить';
+
     return (
         <div className="card-columns bg-dark shadow-lg py-4 px-2">
             {view && <ViewPicture src={view} onClick={clearHandlers} />}
-            
+
             {
                 imges.map(img => {
                     return (
@@ -41,7 +48,7 @@ const Gallery = ({ imges, handler, type, token }) => {
                             pixabay={img.largeImageURL}
                             viewHandlers={viewHandlers}
                         >
-                            {token && <Button type={type} onClick={() => handler(img.id)}>{BtnChildren}</Button>}
+                            { token && <Button type={type} onClick={(ev) => clickHandler(ev, img.id)}>{BtnChildren}</Button> }
                         </Card>
                     )
                 })

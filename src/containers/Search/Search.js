@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Input } from '../../components/UI/Input/Input';
 import { PixabayContect } from '../../context/pixbay/pixabayContext';
-import classes from './Search.module.css';
+import classes from './Search.module.scss';
 
 export const Search = () => {
     const { search, setSearch } = useContext(PixabayContect);

@@ -5,8 +5,8 @@ import { Control } from '../containers/Control/Control';
 
 export const Home = () => {
     return (
-        <div className="py-4">
-            <h1 className="text-center"> Главная страница </h1>
+        <div className="container-fluid pt-3">
+            <h1 className="text-center mb-4"> Главная страница </h1>
             <Search />
             
             <Control />

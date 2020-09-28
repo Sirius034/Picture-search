@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import classes from './Auth.module.css';
+import classes from './Auth.module.scss';
 import is from 'is_js';
 import { FirebaseContext } from '../../context/firebase/firebaseContext';
 import { Button } from '../../components/UI/Button/Button';

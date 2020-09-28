@@ -33,8 +33,8 @@ export const Cards = () => {
                 token={token}
                 imges={hits}
                 loading={loading}
-                handler={addToFavorites}
-                type="success" />
+                actionHandler={addToFavorites}
+                type="outline-success" />
 
             <Pagination
                 page={page}

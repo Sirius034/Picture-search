@@ -5,7 +5,7 @@ import { Editor } from '../../components/Editor/Editor';
 import { FirebaseContext } from '../../context/firebase/firebaseContext';
 import { Form } from '../../components/UI/Form/Form';
 import AnimateHeight from 'react-animate-height';
-import classes from './UserProfile.module.css';
+import classes from './UserProfile.module.scss';
 
 export const UserProfile = () => {
     const { logout, user, editor } = useContext(FirebaseContext);

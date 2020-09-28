@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Navigation.module.css';
+import classes from './Navigation.module.scss';
 import { NavLink } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
 
@@ -30,7 +30,7 @@ export const Navigation = ({ token }) => {
     }
 
     return (
-        <Navbar bg="light" className={`navbar navbar-expand-sm sticky-top navbar-dark bg-dark ${classes.shadow_block}`} expand="lg">
+        <Navbar bg="light" className={`navbar navbar-expand-sm navbar-dark bg-dark ${classes.Navigation}`} expand="lg">
             <span className="navbar-brand mb-0 h1">Search Pictures</span>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">

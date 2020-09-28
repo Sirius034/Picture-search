@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './ViewPicture.module.css';
+import classes from './ViewPicture.module.scss';
 
 export const ViewPicture = ({ src, onClick }) => (
     <div className={classes.ViewPicture} onClick={onClick}>
