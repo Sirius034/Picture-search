@@ -3,16 +3,20 @@ import axios from 'axios';
 import { firebaseReducer } from './firebaseReducer';
 import { FirebaseContext } from './firebaseContext';
 import { PixabayContect } from "../pixbay/pixabayContext";
+import { schema } from './schema';
+import { errorMessage } from './errorMessage';
 import {
     AUTH_SUCCESS,
     AUTH_LOGOUT,
     TO_FAVORITES,
     REMOVE_FROM_FAVORITES,
-    EDIT
+    EDIT,
+    ERROR
 } from './type';
 
 const initialState = {
     token: null,
+    error: null,
     user: {
         id: null,
         name: null,
@@ -22,23 +26,7 @@ const initialState = {
     }
 }
 
-const schema = {
-    id: '',
-    name: '',
-    age: '',
-    email: '',
-    chosen: [
-        {
-            id: 0,
-            tags: 'pixabay',
-            webformatHeight: 200,
-            webformatWidth: 200,
-            largeImageURL: 'https://pixabay.com/static/img/public/medium_rectangle_a.png'
-        }
-    ]
-}
-
-const KEY = process.env.REACT_APP_KEY_FB; 
+const KEY = process.env.REACT_APP_KEY_FB;
 
 export const FirebaseState = ({ children }) => {
     const [state, dispatch] = useReducer(firebaseReducer, initialState);
@@ -58,7 +46,8 @@ export const FirebaseState = ({ children }) => {
         }
 
         try {
-            const response = await axios.post(url, authData);
+            const response = await axios.post(url, authData)
+           
             const { localId, idToken, email } = response.data;
 
             if (!isLogin) {
@@ -68,12 +57,19 @@ export const FirebaseState = ({ children }) => {
             }
 
         } catch (e) {
-            console.log(e)
+            console.log(e);
+            dispatch({ type: ERROR, error: errorMessage[e.response.data.error.message] });
+            
+            const endTimeError = setTimeout(() => {
+                dispatch({ type: ERROR, error: null });
+                clearTimeout(endTimeError);
+            }, 4000);
         }
     }
 
     const setData = async (id, token, email) => {
-        const user = { ...schema, id, email };
+        const user = { ...schema, id, email, chosen: schema.chosen.slice() };
+
         try {
             await axios.put(`https://picture-search-e07e9.firebaseio.com/users/${id}.json`, user);
 
@@ -101,7 +97,7 @@ export const FirebaseState = ({ children }) => {
             const favorites = hits.find(pict => pict.id === idPict);
             const user = { ...state.user };
             const { id, tags, webformatHeight, webformatWidth, largeImageURL } = favorites;
-         
+
             user.chosen.push({
                 id, tags, largeImageURL, webformatHeight, webformatWidth
             });
@@ -122,7 +118,7 @@ export const FirebaseState = ({ children }) => {
 
         user.chosen = chosen.length
             ? chosen
-            : schema.chosen;
+            : schema.chosen.slice();
 
         try {
             await axios.put(`https://picture-search-e07e9.firebaseio.com/users/${user.id}/chosen/.json`, user.chosen);
@@ -142,19 +138,20 @@ export const FirebaseState = ({ children }) => {
         try {
             await axios.put(`https://picture-search-e07e9.firebaseio.com/users/${user.id}/.json`, user);
 
-            dispatch({type: EDIT, user});
-        }catch(e) {
+            dispatch({ type: EDIT, user });
+        } catch (e) {
             console.log(e);
         }
     }
 
     const logout = () => dispatch({ type: AUTH_LOGOUT, user: initialState.user });
 
-    const { token, user } = state;
+    const { token, user, error } = state;
+
     return (
         <FirebaseContext.Provider
             value={{
-                token, user,
+                token, user, error,
                 auth, logout, addToFavorites, removeFavorites, editor
             }}>
             {children}

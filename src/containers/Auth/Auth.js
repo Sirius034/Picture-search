@@ -4,9 +4,10 @@ import is from 'is_js';
 import { FirebaseContext } from '../../context/firebase/firebaseContext';
 import { Button } from '../../components/UI/Button/Button';
 import { Form } from '../../components/UI/Form/Form';
+import { Alert } from '../../components/UI/Alert/Alert';
 
 export const Auth = () => {
-    const { auth } = useContext(FirebaseContext);
+    const { auth, error } = useContext(FirebaseContext);
     const [formControl, setFormControl] = useState({
         isFormValid: false,
         forms: {
@@ -94,6 +95,8 @@ export const Auth = () => {
 
     return (
         <div className={cls}>
+            {error && <Alert text={error} />}
+            
             <Form forms={formControl.forms} onChangeHandler={onChangeHandler}>
                 <Button setStyle="mr-3 mb-2" type="success" disabled={!formControl.isFormValid} onClick={loginHandler}>
                     Авторизация
